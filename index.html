@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Offline Message -->
+    <div class="offline-message">
+        <i class="fas fa-wifi"></i> You are currently offline. Some features may not be available.
+    </div>
+
+    <!-- Verification Section -->
+    <section class="verification-section" id="verificationSection">
+        <div class="AVSlogo">🔐</div>
+        <h2>ACCESS KEY VERIFICATION</h2>
+        
+        <div class="input-group">
+            <label for="userNameInput">Enter Your Name</label>
+            <input type="text" id="userNameInput" placeholder="Avii Core™ ">
+        </div>
+        
+        <div class="input-group">
+            <label for="userEmail">Enter Your Email</label>
+            <input type="email" id="userEmail" placeholder="avii_example@gmail.com" disabled>
+        </div>
+        
+        <div class="input-group">
+            <label for="accessKey">Enter Access Key</label>
+            <input type="text" id="accessKey" placeholder="XXXX-XXXX-XXXX" disabled>
+        </div>
+        
+        <div class="terms-group">
+            <input type="checkbox" id="termsCheckbox" disabled>
+            <label for="termsCheckbox">I accept <a href="https://avii-core-terms-conditions.netlify.app/" target="_blank">Terms and Conditions</a></label>
+        </div>
+        
+        <button class="btn" id="verifyBtn" disabled>Verify</button>
+        
+        <div class="message" id="message"></div>
+    </section>
+
+    <!-- Calculator Section (shown after verification) -->
+    <section class="calculator-section" id="calculatorSection">
+        
+            <!-- Hamburger Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+        <div class="menu-content" id="menuContent">
+            <span class="close-menu" id="closeMenu"><i class="fas fa-times"></i></span>
+            
+                    <div class="user-profile">
+                        <div class="profile-image" id="profileImage">
+                            <i class="fas fa-user"></i>
+                            <div class="edit-icon" id="editProfileImage">
+                                <i class="fas fa-pen"></i>
+                            </div>
+                        </div>
+                        <div class="profile-name" id="profileName">User Name</div>
+                        <div class="profile-email" id="profileEmail">user@example.com</div>
+                    </div>            
+            
+            <ul class="menu-items">
+                <li>
+                    <a href="https://pro-version-coming-soon.netlify.app/" target="_blank">
+                        <i class="fas fa-crown"></i>
+                        <span>Pro Version Features</span>
+                    </a>
+                </li>
+            <li>
+                <a href="https://avii-core-terms-conditions.netlify.app/" target="_blank">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms and Conditions</span>
+                </a>
+            </li>
+            <li>
+                <button id="contactBtn">
+                    <i class="fas fa-headset"></i>
+                    <span>Contact Us</span>
+                </button>
+            </li>
+            <li>
+                <button id="settingsBtn">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </li>
+            <li>
+                <button id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </li>
+        </ul>
+        
+        <button class="close-btn" id="closeMenuBtn">Tap to close</button>
+    </div>
+        
+         <!-- Header (shown after verification) -->
+        <header id="mainHeader">
+            <div class="logo-section">
+                <div class="menu-icon" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="logo">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="titles">
+                    <h1 style="font-size: 30px;">LEVERAGE MASTER</h1>
+                    <p style="font-size: 18px;">Manage Your Trading Risks Genuinely with us</p>
+                </div>
+            </div>
+            <div class="user-info" id="userInfo">
+                <span id="userName"></span>
+            </div>
+        </header>
+        
+        <div class="card">
+            <h3><i class="fas fa-money-bill-wave"></i> Capital ($)</h3>
+            <div class="input-group">
+                <label>Enter Trading Capital</label>
+                <input type="number" id="capital" class="full-width" placeholder="100" min="0">
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3><i class="fas fa-coins"></i> Margin ($)</h3>
+            <div class="input-group">
+                <label>Enter Margin Amount</label>
+                <input type="number" id="margin" class="full-width" placeholder="5" min="0" disabled>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3><i class="fas fa-shield-alt"></i> StopLoss (%)</h3>
+            <div class="input-group">
+                <label>Enter StopLoss Percentage</label>
+                <input type="number" id="stopLoss" class="full-width" placeholder="2" min="0" max="100" disabled>
+            </div>
+             <button class="btn" id="calculateBtn" disabled>Calculate Leverage</button>
+        </div>
+            
+        <div class="card result-card" id="resultCard">
+            <h3 style="color: #00FF00; font-size: 19px;"><i class="fas fa-tachometer-alt" style="color: #00FF00;"></i>Recommend Leverage Ratio</h3>
+            <div class="result-value" id="leverageResult" style="color: #00FF00; margin-top: 30px;">0</div>
+            <div style="color: #ffffff !important; margin-top: 30px; font-size: 14px; opacity: 0.7; text-align: center;">
+                <i class="fas fa-info-circle" style="color: #ffffff !important;"></i> Calculated based on your inputs
+            </div>
+        </div>
+        
+         <!-- Footer (shown after verification) -->
+        <footer id="mainFooter">
+            <div class="social-links">
+                <a href="https://wa.me/p/30467928486154220/94763853813" class="social-btn whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://t.me/DevolopedByAvii" class="social-btn telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+            <p>Developed By Avii</p>
+            <div class="footer">
+                <p>&copy; 2025 All rights reserved.</p>
+                <p>For any inquiries, please contact our <br><a href="#">support team</a></p>
+            </div>
+        </footer>        
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-section" id="adminSection">
+        <div class="admin-header">
+            <h2>ADMIN AREA</h2>
+            <div>
+                <button class="btn" id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+                <button class="btn" id="adminLogoutBtn" style="margin-left: 10px;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" id="adminSearch" placeholder="Search by key, name or email...">
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>All Keys</h3>
+                <div class="stat-value" id="allKeys">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Monthly Keys</h3>
+                <div class="stat-value" id="monthlyKeys">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>3 Months Keys</h3>
+                <div class="stat-value" id="threeMonthKeys">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Lifetime Keys</h3>
+                <div class="stat-value" id="lifetimeKeys">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Keys</h3>
+                <div class="stat-value" id="activeKeys">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Blocked Keys</h3>
+                <div class="stat-value" id="blockedKeys">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Expired Keys</h3>
+                <div class="stat-value" id="expiredKeys">0</div>
+            </div>
+        </div>
+        
+        <div class="admin-table-container">
+            <table class="admin-table" id="adminTable">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Package</th>
+                        <th>Status</th>
+                        <th>Device ID</th>
+                        <th>Usage Count</th>
+                        <th>Activated Time</th>
+                        <th>Expired Time</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Note</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                    <!-- Rows will be added dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <span class="modal-close" id="closeSettings"><i class="fas fa-times"></i></span>
+        
+        <!-- Change Name Section -->
+        <h3>Change Name</h3>
+        <div class="input-group">
+            <label for="currentName">Current Name</label>
+            <input type="text" id="currentName">
+        </div>
+        <div class="input-group">
+            <label for="newName">New Name</label>
+            <input type="text" id="newName">
+        </div>
+        <div class="input-group">
+            <label for="changeNameKey">Access Key</label>
+            <input type="text" id="changeNameKey">
+        </div>
+        <button class="btn" id="confirmNameChange">Change Name</button>
+        
+        <hr style="margin: 20px 0; border-color: var(--border-light)">
+        
+        <!-- Change Email Section -->
+        <h3>Change Email</h3>
+        <div class="input-group">
+            <label for="currentEmail">Current Email</label>
+            <input type="email" id="currentEmail">
+        </div>
+        <div class="input-group">
+            <label for="newEmail">New Email</label>
+            <input type="email" id="newEmail">
+        </div>
+        <div class="input-group">
+            <label for="changeEmailKey">Access Key</label>
+            <input type="text" id="changeEmailKey">
+        </div>
+            <button class="btn" id="confirmEmailChange">Change Email</button>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal contact-modal">
+            <span class="modal-close" id="closeContactModal"><i class="fas fa-times"></i></span>
+            <h3>Contact Us</h3>
+            
+            <div class="contact-buttons">
+                <a href="https://t.me/DevolopedByAvii" class="social-btn telegram" target="_blank">
+                    <i class="fab fa-telegram"></i> Telegram
+                </a>
+                <a href="https://wa.me/p/30467928486154220/94763853813" class="social-btn whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Upload Modal -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal">
+            <span class="modal-close" id="closeImageModal"><i class="fas fa-times"></i></span>
+            <h3>Change Profile Image</h3>
+            
+            <div class="input-group">
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>
+            
+            <button class="btn" id="uploadImageBtn">Upload Image</button>
+        </div>
+    </div>
+    <script src="keys.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
